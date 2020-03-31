@@ -1,7 +1,7 @@
 <template>
   <section>
-    <ul v-for="item in tasks" :key="item.id">
-      <task-item :task="item" />
+    <ul class="tasks-list">
+      <task-item v-for="item in tasks" :key="item.id" :task="item" />
     </ul>
   </section>
 </template>
@@ -22,5 +22,9 @@ export default {
 </script>
 
 <style>
-
+.tasks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 </style>

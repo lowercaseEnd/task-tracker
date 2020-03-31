@@ -36,6 +36,7 @@ export default {
       if (item.id === Number(this.$route.params.id)) {
         this.task = item;
         this.description = item.description;
+        this.date = item.date;
         break;
       }
     }
