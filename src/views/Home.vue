@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import TaskInfo from "@/components/TaskInfo";
+const TaskInfo = () => import("@/components/TaskInfo");
 
 export default {
   name: 'Home',

@@ -34,11 +34,15 @@ export default {
     saveTask() {
       let temp = JSON.parse(localStorage.getItem("tasks")) || [];
       temp.push({
+        id: Date.now(),
         name: this.name,
         tags: this.tags,
         description: this.description,
-        date: this.date
+        date: this.date,
+        completed: false
       });
+      this.name = this.description = this.date = "";
+      this.tags = [];
       localStorage.setItem("tasks", JSON.stringify(temp));
     }
   }
