@@ -1,7 +1,7 @@
 <template>
   <section>
     <p>Task name: {{task.name}}</p>
-    <p>Tags: </p>
+    <p>Tags:</p>
     <div v-for="tag in task.tags" :key="tag">
       <p>{{tag}}</p>
     </div>
@@ -17,7 +17,8 @@
     </b-form>
     <b-button @click="toggleStatus">
       <div v-if="this.task.completed">Открыть</div>
-      <div v-else>Завершить</div></b-button>
+      <div v-else>Завершить</div>
+    </b-button>
   </section>
 </template>
 
@@ -43,11 +44,26 @@ export default {
   },
   methods: {
     changeTask() {
-      this.task.description = this.description;
-      this.task.date = this.date;
+      let temp = JSON.parse(localStorage.getItem("tasks"));
+      for (let item of temp) {
+        if (item.id === Number(this.$route.params.id)) {
+          item.description = this.description;
+          item.date = this.date;
+          break;
+        }
+      }
+      localStorage.setItem("tasks", JSON.stringify(temp));
     },
     toggleStatus() {
-      this.task.completed = !this.task.completed;
+      this.completed = !this.task.completed;
+     let temp = JSON.parse(localStorage.getItem("tasks"));
+      for (let item of temp) {
+        if (item.id === Number(this.$route.params.id)) {
+          item.completed = this.completed;
+          break;
+        }
+      }
+      localStorage.setItem("tasks", JSON.stringify(temp));
     }
   }
 };
